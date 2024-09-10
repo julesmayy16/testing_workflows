@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+## Background
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+As the tech lead at a bank, you need to integrate Alloy’s API to minimize fraudulent applications and reduce manual reviews by the compliance team. This assignment will give you hands-on experience in building such an integration.
 
-## Available Scripts
+## Task
 
-In the project directory, you can run:
+You will create a basic web application consisting of frontend and backend components:
 
-### `npm start`
+1. **Frontend:** A simple application form for a bank or finance app to collect applicant details.
+2. **Backend:** An integration with Alloy's API to submit the collected details, handle the API response, and display the appropriate message to the applicant.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+All interactions will be done in Sandbox mode, so no real data will be processed.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Instructions
 
-### `npm test`
+1. **Watch the Demo Video:**
+   Get acquainted with Alloy's basics by watching the provided demo video. This will give you context on how Alloy works when an API call is submitted.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Build the Application:**
+   - Use any framework of your choice for the frontend (e.g., React, Svelte, Vue) and backend (e.g., Express, Flask).
+   - Your frontend should be a form that collects the required applicant details. Creativity in UI/UX will be recognized.
+   - The backend should handle form submissions, send them to Alloy’s API, and process the response to display the outcome.
 
-### `npm run build`
+3. **Form Details:**
+   The form should capture the following details:
+   - **First Name**
+   - **Last Name**
+   - **Address**
+     - Line 1
+     - Line 2
+     - City
+     - State (must be a two-letter code, e.g., NY, CA)
+     - Zip/Postal Code
+     - Country (must be "US" for this assignment)
+   - **SSN** (must be 9 digits, no dashes)
+   - **Email Address**
+   - **Date of Birth** (ISO-8601 format: YYYY-MM-DD)
+   - Implement validation rules on the frontend for extra credit.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. **API Integration:**
+   - Use the provided API documentation to integrate with Alloy:
+     - Retrieve the exact field format with a GET request to: `https://sandbox.alloy.co/v1/parameters/`
+     - Submit application details via a POST request to: `https://sandbox.alloy.co/v1/evaluations/`
+   - Use Basic Authentication with the provided `workflow_token` and `workflow_secret`. Make sure to Base64 encode them in the format `workflow_token:workflow_secret`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5. **Handle Responses:**
+   - The Sandbox API will return responses such as `{"summary":{"outcome":"Approved"}}`.
+   - Display appropriate messages based on the response:
+     - **Approved:** "Success! Your account has been created."
+     - **Manual Review:** "Thanks for submitting your application, we’ll be in touch shortly."
+     - **Denied:** "Sorry, your application was not successful."
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+6. **Test the Integration:**
+   - Use Sandbox Personas to test different outcomes:
+     - Last name "Review" will result in "Manual Review."
+     - Last name "Deny" will result in "Deny."
+   - Your application should correctly display messages for each scenario.
